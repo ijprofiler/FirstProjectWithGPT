@@ -3,25 +3,25 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 
 
-
 class MainView(BoxLayout):
-    def __init__(self, **kwargs):
+    def __init__(self, controller, **kwargs):
         super().__init__(**kwargs)
+        self.controller = controller
         self.orientation = 'vertical'
 
 
         self.label = Label(text='Главное окно')
-        # Создаем кнопку
         self.button = Button(text='Нажми меня')
-        # Привязываем метод к кнопке
-        self.button.bind(on_press=self.on_button_press)
+        self.button.bind(on_press=self._on_button_press)
 
 
         self.add_widget(self.label)
         self.add_widget(self.button)
 
 
-    def on_button_press(self, instance):
-        print("Кнопка нажата!")
-        # Или измените текст кнопки
-        instance.text = "Кнопка нажата"
+    def _on_button_press(self, instance):
+        self.controller.on_button_pressed()
+
+
+    def set_label_text(self, text):
+        self.label.text = text
