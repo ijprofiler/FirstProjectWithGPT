@@ -11,7 +11,9 @@ class MainView(BoxLayout):
 
 
         self.label = Label(text='Главное окно')
+        # Создаем кнопку
         self.button = Button(text='Нажми меня')
+        # Привязываем метод к кнопке
         self.button.bind(on_press=self.on_button_press)
 
 
@@ -19,5 +21,7 @@ class MainView(BoxLayout):
         self.add_widget(self.button)
 
 
-def on_button_press(self, instance):
-    self.label.text = 'Кнопка нажата'
+    def on_button_press(self, instance):
+        print("Кнопка нажата!")
+        # Или измените текст кнопки
+        instance.text = "Кнопка нажата"
